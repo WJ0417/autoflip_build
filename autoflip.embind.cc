@@ -188,7 +188,7 @@ std::unique_ptr<easyexif::EXIFInfo> GetExifInfo(const std::string &data) {
   return info;
 }
 
-bool CppSetAspectRatio(int aspect_left, int aspect_right) {
+bool CppSetAspectRatio(double aspect_left, double aspect_right) {
   aspect_ratio = absl::StrCat(aspect_left, ":", aspect_right);
   return true;
 }
