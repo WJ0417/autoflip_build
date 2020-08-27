@@ -13,6 +13,10 @@ output_stream: "shot_change_internal"
 output_stream: "salient_regions_internal"
 output_stream: "borders_internal"
 
+output_stream: "shot_change"
+output_stream: "salient_regions"
+output_stream: "borders"
+
 output_stream: "external_rendering_per_frame"
 
 
@@ -95,7 +99,7 @@ node {
 # SIGNAL FUSION: Combine detections (with weights) on each frame
 node {
   calculator: "SignalFusingCalculator"
-  input_stream: "shot_change"
+  input_stream: "shot_change_internal"
   input_stream: "face_regions"
   output_stream: "salient_regions_internal"
   options {
@@ -152,6 +156,9 @@ node {
   input_stream: "shot_change_external"
   input_stream: "shot_change_internal"
   output_stream: "shot_change"
+  input_stream_handler {
+    input_stream_handler: "ImmediateInputStreamHandler"
+  }
 }
 
 # MERGING: merge the caculator produced packets to related input stream.
@@ -160,6 +167,9 @@ node {
   input_stream: "salient_regions_external"
   input_stream: "salient_regions_internal"
   output_stream: "salient_regions"
+  input_stream_handler {
+    input_stream_handler: "ImmediateInputStreamHandler"
+  }
 }
 
 # MERGING: merge the caculator produced packets to related input stream.
@@ -168,7 +178,11 @@ node {
   input_stream: "borders_external"
   input_stream: "borders_internal"
   output_stream: "borders"
+  input_stream_handler {
+    input_stream_handler: "ImmediateInputStreamHandler"
+  }
 }
+
 
 # CROPPING: make decisions about how to crop each frame.
 node {
