@@ -153,36 +153,35 @@ node {
 # MERGING: merge the caculator produced packets to related input stream.
 node {
   calculator: "MergeCalculator"
+  input_stream_handler {
+    input_stream_handler: "ImmediateInputStreamHandler"
+  }
   input_stream: "shot_change_external"
   input_stream: "shot_change_internal"
   output_stream: "shot_change"
-  input_stream_handler {
-    input_stream_handler: "ImmediateInputStreamHandler"
-  }
 }
 
 # MERGING: merge the caculator produced packets to related input stream.
 node {
   calculator: "MergeCalculator"
+  input_stream_handler {
+    input_stream_handler: "ImmediateInputStreamHandler"
+  }
   input_stream: "salient_regions_external"
   input_stream: "salient_regions_internal"
   output_stream: "salient_regions"
-  input_stream_handler {
-    input_stream_handler: "ImmediateInputStreamHandler"
-  }
 }
 
 # MERGING: merge the caculator produced packets to related input stream.
 node {
   calculator: "MergeCalculator"
+  input_stream_handler {
+    input_stream_handler: "ImmediateInputStreamHandler"
+  }
   input_stream: "borders_external"
   input_stream: "borders_internal"
   output_stream: "borders"
-  input_stream_handler {
-    input_stream_handler: "ImmediateInputStreamHandler"
-  }
 }
-
 
 # CROPPING: make decisions about how to crop each frame.
 node {
